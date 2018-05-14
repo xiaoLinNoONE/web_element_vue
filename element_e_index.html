@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--基本的设置-->
+    <meta charset="UTF-8">
+    <title>饿了么-网上订餐_外卖_饿了么订餐官网</title>
+    <!--ico文件由比特虫制作-->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <!--以下两个由搜索引擎使用-->
+    <meta name="description" content="“饿了么”2008年创立于上海，是中国领先的本地生活平台。截至目前，饿了么在线外卖交易平台已覆盖全国2000个城市，加盟餐厅130万家，用户量达2.6亿"/>
+    <meta name="keywords" content="饿了么，网上订餐，外卖，快餐外卖，外卖网"/>
+
+    <!--格式检测，设置拨号连接 邮箱识别 跳转地图是否-->
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <!--网页地址放到任务栏中的相关meat设置-->
+    <!--"application-name" 元数据定义固定网站应用程序实例的名称。-->
+    <meta name="application-name" content="饿了么网上订餐"/>
+    <!--"msapplication-tooltip" 元数据提供其他工具提示文本，当光标悬停在 Windows 的“开始”菜单中或桌面
+    上的固定网站快捷方式上时，将会出现这些文本。-->
+    <meta name="msapplication-tooltip" content="饿了么网上订餐"/>
+    <!--"msapplication-starturl" 元数据包含应用程序的根 URL。起始 URL 可以是完全限定或相对于当前文档的。只允许 HTTP 和 HTTPS
+    协议。如果缺少此元素，则改为使用当前页的地址。-->
+    <meta name="msapplication-starturl" content="./"/>
+    <!--在Windows 8上，我们可以将网站固定在开始屏幕上，而且支持个性化自定义色块icon和背景图片。这个标签是用来定义色块的背景图的。
+    色块图应该为144*144像素的png格式图片，背景透明。-->
+    <meta name="msapplication-tileimage" content="=http://static11.elemecdn.com/apple-touch-icon.png?v=2"/>
+    <!--同前一个元数据msapplication-TileImage类似，这个功能是用来设置颜色值，个性化自定义色块（磁贴）icon。颜色值应该设为logo的主色或者网站视觉的主色调颜色。-->
+    <meta name="msapplication-tilecolor" content="#0088ff"/>
+    <!--它能够将一个网站如同程序固定在 Windows Vista 和 Windows 7 的任务栏中，并且在点击图标后显示一个相关网站的列表。-->
+    <meta name="msapplication-task"
+          content="name=切换地区;action-uri=http://ele.me/home;icon-uri=http://static11.elemecdn.com/apple-touch-icon.png?v=2"/>
+    <meta name="msapplication-task"
+          content="name=我要订餐;action-uri=http://ele.me?from=IE;icon-uri=http://static11.elemecdn.com/apple-touch-icon.png?v=2"/>
+    <meta name="msapplication-task"
+          content="name=订单中心;action-uri=http://ele.me/profile?from=IE;icon-uri=http://static11.elemecdn.com/apple-touch-icon.png?v=2"/>
+    <meta name="msapplication-task"
+          content="name=寻求帮助（HELP）;action-uri=http://ele.me/support?from=IE;icon-uri=http://static11.elemecdn.com/apple-touch-icon.png?v=2"/>
+    <meta property="qc:admins" content="2263606250655"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="js/element_e.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/element_e_base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!--element vue部分-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+</head>
+<body>
+
+<!--头部-->
+<header id="app">
+    <div class="scop_w">
+        <div class="nav">
+            <div class="right_a">
+                <a class="market" href="#">我要开店</a>
+                <a class="login" href="#"><span>|</span>登录</a>
+                <a href="#">注册</a>
+            </div>
+            <h1 class="left_img">
+                <a href="https://www.ele.me/home/">
+                    <img src="images/logo_e1.png" alt="ele">
+                </a>
+            </h1>
+        </div>
+        <div class="middel">
+            <div class="mid_uper">
+                <img src="images/map-logo-center.425427.svg" alt="ele">
+            </div>
+
+            <div class="mid_mid">
+                <template>
+                    <!--分组选择-->
+
+                    <el-select class="select" v-model="value7" placeholder="请选择">
+                        <el-option-group class="select" v-for="group in options3" :key="group.label" :label="group.label">
+                            <el-option class="select" v-for="item in group.options" :key="item.value" :label="item.label"
+                                       :value="item.value">
+                            </el-option>
+                        </el-option-group>
+                    </el-select>
+
+
+                    <!--input带有输入提示-->
+                    <el-autocomplete
+                            class="inline-input"
+                            v-model="state2"
+                            :fetch-suggestions="querySearch"
+                            placeholder="请输入你的收货地址（写字楼，小区，街道或者学校）"
+                            :trigger-on-focus="false"
+                            @select="handleSelect"
+                    ></el-autocomplete>
+
+                    <!--按钮-->
+                    <el-button class="search" type="danger">搜索</el-button>
+
+                </template>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</header>
+
+<footer>
+    <div class="qr_code">
+        <img src="images/erweima_e.png" alt="ele">
+        <div class="app_text">
+            <p>新用户首次下单
+        <h2>最高立减30元</h2>
+            立即下载APP，享更多优惠吧！
+            </p>
+        </div>
+        <p class="app_down">扫码下载 APP</p>
+    </div>
+    <div class="info">
+        <div class="posi">
+        <a href="#">我要开店</a><span>|</span>
+        <a href="#">联系我们</a><span>|</span>
+        <a href="#">服务条款与协议</a><span>|</span>
+        <a href="#">加入我们</a><span>|</span>
+        <a href="#">蜂鸟配送</a><span>|</span>
+        <a href="#">失信人员</a>
+        </div>
+        <div  >
+            <ul class="list">
+                <li>互联网药品信息服务资格证书：<a href="#">(沪)-经营性-2016-0011</a></li><span>|</span>
+                <li>增值电信业务许可证：<a href="#">沪B2-20150033</a></li><span>|</span>
+                <li><a href="#">沪ICP备09007032</a> </li><span>|</span>
+                <li><a href="#">上海工商行政管理</a>Copy@2008-2018上海拉扎斯信息科技, All Rights Reserved.</li>
+                <li></li>
+
+            </ul>
+        </div>
+        <div class="last_img">
+            <img src="images/net_police.jpg" alt="ele">
+        </div>
+
+    </div>
+</footer>
+
+
+</body>
+<script>
+    new Vue({
+        //设置为header id为  app
+        el: '#app',
+        data: function () {
+            return {
+                visible: false,
+                options3: [{
+                    label: '热门城市',
+                    options: [{
+                        value: 'Shanghai',
+                        label: '上海'
+                    }, {
+                        value: 'Beijing',
+                        label: '北京'
+                    }]
+                }, {
+                    label: '城市名',
+                    options: [{
+                        value: 'Chengdu',
+                        label: '成都'
+                    }, {
+                        value: 'Shenzhen',
+                        label: '深圳'
+                    }, {
+                        value: 'Guangzhou',
+                        label: '广州'
+                    }, {
+                        value: 'Dalian',
+                        label: '大连'
+                    }]
+                }],
+                value7: '',
+
+                restaurants: [],
+                state1: '',
+                state2: ''
+
+            }
+        },
+        methods: {
+            querySearch(queryString, cb) {
+                var restaurants = this.restaurants;
+                var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            createFilter(queryString) {
+                return (restaurant) => {
+                    return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+                };
+            },
+            loadAll() {
+                return [
+                    {"value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号"},
+                    {"value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号"},
+                    {"value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113"},
+                    {"value": "泷千家(天山西路店)", "address": "天山西路438号"},
+                    {"value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101"},
+                    {"value": "贡茶", "address": "上海市长宁区金钟路633号"},
+                    {"value": "豪大大香鸡排超级奶爸", "address": "上海市嘉定区曹安公路曹安路1685号"},
+                    {"value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号"},
+                    {"value": "十二泷町", "address": "上海市北翟路1444弄81号B幢-107"},
+                    {"value": "星移浓缩咖啡", "address": "上海市嘉定区新郁路817号"},
+                    {"value": "阿姨奶茶/豪大大", "address": "嘉定区曹安路1611号"},
+                    {"value": "新麦甜四季甜品炸鸡", "address": "嘉定区曹安公路2383弄55号"},
+                    {"value": "Monica摩托主题咖啡店", "address": "嘉定区江桥镇曹安公路2409号1F，2383弄62号1F"},
+                    {"value": "浮生若茶（凌空soho店）", "address": "上海长宁区金钟路968号9号楼地下一层"},
+                    {"value": "NONO JUICE  鲜榨果汁", "address": "上海市长宁区天山西路119号"},
+                    {"value": "CoCo都可(北新泾店）", "address": "上海市长宁区仙霞西路"},
+                    {"value": "快乐柠檬（神州智慧店）", "address": "上海市长宁区天山西路567号1层R117号店铺"},
+                    {"value": "Merci Paul cafe", "address": "上海市普陀区光复西路丹巴路28弄6号楼819"},
+                    {"value": "猫山王（西郊百联店）", "address": "上海市长宁区仙霞西路88号第一层G05-F01-1-306"},
+                    {"value": "枪会山", "address": "上海市普陀区棕榈路"},
+                    {"value": "纵食", "address": "元丰天山花园(东门) 双流路267号"},
+                    {"value": "钱记", "address": "上海市长宁区天山西路"},
+                    {"value": "壹杯加", "address": "上海市长宁区通协路"},
+                    {"value": "唦哇嘀咖", "address": "上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元"},
+                    {"value": "爱茜茜里(西郊百联)", "address": "长宁区仙霞西路88号1305室"},
+                    {"value": "爱茜茜里(近铁广场)", "address": "上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺"},
+                    {"value": "鲜果榨汁（金沙江路和美广店）", "address": "普陀区金沙江路2239号金沙和美广场B1-10-6"},
+                    {"value": "开心丽果（缤谷店）", "address": "上海市长宁区威宁路天山路341号"},
+                    {"value": "超级鸡车（丰庄路店）", "address": "上海市嘉定区丰庄路240号"},
+                    {"value": "妙生活果园（北新泾店）", "address": "长宁区新渔路144号"},
+                    {"value": "香宜度麻辣香锅", "address": "长宁区淞虹路148号"},
+                    {"value": "凡仔汉堡（老真北路店）", "address": "上海市普陀区老真北路160号"},
+                    {"value": "港式小铺", "address": "上海市长宁区金钟路968号15楼15-105室"},
+                    {"value": "蜀香源麻辣香锅（剑河路店）", "address": "剑河路443-1"},
+                    {"value": "北京饺子馆", "address": "长宁区北新泾街道天山西路490-1号"},
+                    {"value": "饭典*新简餐（凌空SOHO店）", "address": "上海市长宁区金钟路968号9号楼地下一层9-83室"},
+                    {"value": "焦耳·川式快餐（金钟路店）", "address": "上海市金钟路633号地下一层甲部"},
+                    {"value": "动力鸡车", "address": "长宁区仙霞西路299弄3号101B"},
+                    {"value": "浏阳蒸菜", "address": "天山西路430号"},
+                    {"value": "四海游龙（天山西路店）", "address": "上海市长宁区天山西路"},
+                    {"value": "樱花食堂（凌空店）", "address": "上海市长宁区金钟路968号15楼15-105室"},
+                    {"value": "壹分米客家传统调制米粉(天山店)", "address": "天山西路428号"},
+                    {"value": "福荣祥烧腊（平溪路店）", "address": "上海市长宁区协和路福泉路255弄57-73号"},
+                    {"value": "速记黄焖鸡米饭", "address": "上海市长宁区北新泾街道金钟路180号1层01号摊位"},
+                    {"value": "红辣椒麻辣烫", "address": "上海市长宁区天山西路492号"},
+                    {"value": "(小杨生煎)西郊百联餐厅", "address": "长宁区仙霞西路88号百联2楼"},
+                    {"value": "阳阳麻辣烫", "address": "天山西路389号"},
+                    {"value": "南拳妈妈龙虾盖浇饭", "address": "普陀区金沙江路1699号鑫乐惠美食广场A13"}
+                ];
+            },
+            handleSelect(item) {
+                console.log(item);
+            }
+        },
+        mounted() {
+            this.restaurants = this.loadAll();
+        }
+
+
+    })
+
+
+</script>
+
+</html>
